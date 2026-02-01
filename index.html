@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="author" content="Tamila Mosiura">
+  <title>Contacts database project</title>
+</head>
+
+<body>
+  <div id="contacts">
+  </div>
+
+  <button style="padding: 10px; margin-top: 10px; border: 1px solid black;" onclick="searchForSlot()">Search for slot data</button>
+
+  <script>
+  const names = [
+    "Arnold",
+    "Sly",
+    "Dwayne",
+    "Vin",
+    "JCVD",
+    "Steven"
+  ];
+
+  const gridBody = document.getElementById('contacts');
+
+  const styles = `padding-left: 40px; list-style-type: none; padding:5px;`;
+
+  const header = document.createElement('ul');
+  header.style = 'font-weight: bold; display: grid; grid-template-columns: 100px 200px; margin: 0;';
+
+  const slotNum = document.createElement('li');
+    slotNum.style = `${styles} border:1px solid black;`;
+    slotNum.textContent = 'Slot #';
+  header.appendChild(slotNum);
+
+  const slotName = document.createElement('li');
+    slotName.style = `${styles} border:1px solid black;`;
+    slotName.textContent = 'Name';
+  header.appendChild(slotName);
+
+  gridBody.appendChild(header);
+
+  // Show all contacts from the names database
+  for (let i = 0; i < names.length; i++) {
+    const row = document.createElement('ul');
+    row.style = 'display: grid; grid-template-columns: 100px 200px; margin: 0;';
+    
+    const slotCell = document.createElement('li');
+    slotCell.textContent = i;
+    slotCell.style = `${styles} background-color: lightgray; border:1px solid black;`;
+    row.appendChild(slotCell);
+
+    const nameCell = document.createElement('li');
+    nameCell.textContent = names[i];
+    nameCell.style = `${styles} background-color: yellow; border:1px solid black;`;
+    row.appendChild(nameCell);
+
+    gridBody.appendChild(row);
+  }
+  
+  function searchForSlot() {
+    // Start with prompts
+
+    
+    let isFinished = false;
+    while(!isFinished) {
+      const slotNumber = prompt("Please, provide a Slot Number");
+      const slotName = names[slotNumber];
+      // this might not work as user can provide invalid slot number or any other text or even nothing
+      if (slotName !== undefined) {
+        alert(`You selected ${slotName}`);
+      } else {
+        alert("Cannot find this Slot Number. Please, try again");
+      }
+
+      const tryAgain = confirm("Do you want to try again?");
+      if (!tryAgain) {
+        isFinished = true;
+      }
+    }
+  }
+
+  </script>
+</body>
+</html>
+
